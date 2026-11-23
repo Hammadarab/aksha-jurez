@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jurez &amp; Aksha — Wedding Invitation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@400;500&family=Amiri:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{--wine:#6e1f2f;--gold:#c9a45c;--gold2:#e8d3a2;--ivory:#fffaf1;--blush:#f5ebdc;color-scheme:light;box-sizing:border-box}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--blush);color:var(--wine);font-family:Montserrat,sans-serif;overscroll-behavior:none}
+body{overflow:hidden}
+h1,h2,h3,.pf{font-family:'Playfair Display',Georgia,serif;font-weight:500}
+.paused,.paused *{animation-play-state:paused!important}
+#loader{position:fixed;inset:0;z-index:99;background:var(--blush);display:grid;place-items:center;transition:opacity .6s}
+.spin{width:34px;height:34px;border:3px solid var(--gold2);border-top-color:var(--wine);border-radius:50%;animation:rot 1s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+#scene{position:fixed;inset:0;z-index:50;background:radial-gradient(circle at 50% 40%,#fffdf7,var(--blush));display:grid;place-items:center;perspective:1100px;overflow:hidden;transition:opacity .8s}
+#scene .wrap{transition:transform 1.6s ease-in,opacity .8s;transform-style:preserve-3d}
+#scene.zoom .wrap{transform:scale(3.2)}
+.book{position:relative;width:min(62vw,300px);aspect-ratio:3/4;transform-style:preserve-3d;transform:rotateY(-12deg) rotateX(6deg);transition:transform 1.4s}
+.book.open{transform:rotateY(0) rotateX(0)}
+.pg{position:absolute;inset:0;background:var(--ivory);border-radius:4px 10px 10px 4px;box-shadow:0 18px 40px #6e1f2f55}
+.cover{position:absolute;inset:0;transform-origin:left center;transition:transform 1.5s cubic-bezier(.6,.05,.3,1);border-radius:4px 10px 10px 4px;background:linear-gradient(115deg,#8a2a3d,var(--wine) 55%,#521320);box-shadow:0 18px 40px #3a0c1855,inset 6px 0 12px #0003;display:grid;place-items:center;backface-visibility:hidden}
+.book.open .cover{transform:rotateY(-165deg)}
+.cover::before{content:"";position:absolute;inset:12px;border:2px solid var(--gold);border-radius:3px}
+.med{width:46%;aspect-ratio:1;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center;color:var(--gold);font-size:clamp(34px,13vw,58px);background:radial-gradient(circle,#ffffff14,transparent 70%);box-shadow:0 0 0 5px #6e1f2f,0 0 0 6px var(--gold)}
+#hint{position:absolute;bottom:14vh;font-size:13px;letter-spacing:.2em;text-transform:uppercase;opacity:0;transition:opacity .6s}
+#hint.show{opacity:1;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.rose{position:fixed;z-index:3;pointer-events:none;width:min(44vw,190px);will-change:transform}
+.rose svg{width:100%;display:block;animation:sway 6s ease-in-out infinite alternate;filter:drop-shadow(0 6px 8px #8a6b3a55)}
+@keyframes sway{from{transform:rotate(-5deg) scale(.97)}to{transform:rotate(5deg) scale(1.03)}}
+.r1{top:-8%;left:-12%}.r2{top:-6%;right:-14%}.r3{bottom:-10%;left:-14%}.r4{bottom:-8%;right:-14%}
+.mari{position:fixed;top:0;left:0;right:0;height:0;z-index:4;pointer-events:none}
+.mari i{position:absolute;top:-4px;width:16px;height:var(--h);transform-origin:50% 0;background:radial-gradient(circle,#fff3cf 0 2px,#c9a45c 3px 5px,transparent 6px) 0 0/16px 14px repeat-y;transform:rotate(var(--sw,0deg));transition:transform .25s ease-out}
+#site{visibility:hidden;position:relative;z-index:2}
+#site.on{visibility:visible}
+section{position:relative;padding:48px 24px;text-align:center;max-width:480px;margin:auto}
+.first{min-height:100svh;height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:clamp(4px,1.4svh,12px);padding:34px 20px 18px}
+.first .med{width:clamp(56px,10svh,84px);font-size:clamp(24px,4.6svh,38px);color:var(--wine);border-color:var(--gold);box-shadow:0 0 0 4px var(--blush),0 0 0 5px var(--gold)}
+.sm{font-size:clamp(10px,1.6svh,12px);letter-spacing:.22em;text-transform:uppercase}
+.ar{font-family:Amiri,serif;font-size:clamp(22px,4.4svh,32px);color:#9a7430;line-height:1.5}
+.nm{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(38px,7.2svh,60px);line-height:1.1;min-height:1.1em;color:var(--wine)}
+.sc{font-family:'Great Vibes',cursive;font-weight:400;color:var(--wine)}
+.tx{font-size:13px;line-height:1.9;margin:0 auto 12px;max-width:320px}
+#ab{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:20;padding:9px 14px;border-radius:24px;border:1px solid var(--gold);background:#fffaf1ee;color:var(--wine);font:500 11px Montserrat;letter-spacing:.08em;cursor:pointer}
+.first::before{content:"";position:absolute;inset:26px 24px 20px;border:1.5px solid var(--gold);border-radius:999px 999px 8px 8px;box-shadow:0 0 0 6px var(--blush),0 0 0 7.5px var(--gold),0 0 0 13px var(--blush),0 0 0 14.5px var(--gold);z-index:-1;pointer-events:none}
+body::after{content:"";position:fixed;inset:6px;border:1px solid var(--gold);pointer-events:none;z-index:5}
+.par{font-size:clamp(11px,1.7svh,13px);line-height:1.5;opacity:.85}
+.inv{font-size:clamp(12px,1.8svh,14px);line-height:1.6;max-width:300px}
+.amp{font-style:italic;font-size:clamp(22px,4svh,32px);color:var(--gold)}
+.ch{width:20px;height:20px;border-right:2px solid var(--wine);border-bottom:2px solid var(--wine);transform:rotate(45deg);animation:dn 1.6s infinite;margin-top:6px}
+@keyframes dn{0%,100%{transform:translateY(0) rotate(45deg);opacity:.4}50%{transform:translateY(8px) rotate(45deg);opacity:1}}
+.l{display:inline-block;opacity:0;filter:blur(6px);transition:opacity .5s,filter .5s}.l.in{opacity:1;filter:none}
+.bi{opacity:0;filter:blur(8px);transform:translateY(10px);transition:all .9s}.bi.in{opacity:1;filter:none;transform:none}
+h2{font-size:30px;margin-bottom:8px}
+.rule{width:60px;height:1px;background:var(--gold);margin:12px auto 22px}
+.rod{position:relative;height:16px;border-radius:8px;background:linear-gradient(var(--gold2),var(--gold),#8c6a2c);box-shadow:0 3px 6px #0003;z-index:2}
+.rod::before,.rod::after{content:"";position:absolute;top:-3px;width:14px;height:22px;border-radius:5px;background:var(--gold)}
+.rod::before{left:-6px}.rod::after{right:-6px}
+.scr{max-height:0;overflow:hidden;transition:max-height 1.5s cubic-bezier(.3,.7,.3,1);background:var(--ivory);border:2px solid var(--gold);border-top:0;margin:0 10px;border-radius:0 0 10px 10px;position:relative}
+.scr.open{max-height:380px}
+.scr .in2{padding:30px 16px 34px}
+.dt{font-size:34px;line-height:1;color:#9a7430;letter-spacing:.06em}
+.tas{position:absolute;right:26px;top:6px;width:30px;touch-action:none;cursor:grab;z-index:3;display:flex;flex-direction:column;align-items:center}
+.tas b{width:2px;height:26px;background:var(--gold)}.tas u{width:16px;height:34px;background:linear-gradient(var(--wine),#a63a4e);border-radius:40% 40% 8px 8px;display:block;box-shadow:0 3px 6px #0004}
+.fing{position:absolute;right:14px;top:44px;font-size:28px;z-index:4;animation:pull 1.8s ease-in-out infinite;pointer-events:none}
+@keyframes pull{0%{transform:translateY(0)}60%,100%{transform:translateY(36px)}}
+.cd{margin-top:24px;font-size:15px;letter-spacing:.06em;white-space:nowrap}
+.btn{display:inline-block;margin:6px 4px;padding:12px 22px;border-radius:30px;border:1.5px solid var(--wine);background:none;color:var(--wine);font:500 12px Montserrat;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+.btn.f{background:var(--wine);color:var(--ivory)}
+.car{position:relative;height:430px;perspective:900px;touch-action:pan-y;user-select:none}
+.cd2{position:absolute;left:50%;top:0;width:78%;margin-left:-39%;height:400px;border-radius:18px;overflow:hidden;background:var(--ivory);border:1.5px solid var(--gold);box-shadow:0 14px 30px #6e1f2f33;transition:transform .55s,opacity .55s;text-align:center}
+.scn{height:150px;display:grid;place-items:center;font-size:70px;background:linear-gradient(135deg,#f6ead6,#e3cd9a);position:relative;overflow:hidden}
+.scn s{position:absolute;font-size:110px;filter:blur(7px);opacity:.55;text-decoration:none}
+.scn span{position:relative;animation:bob 2.4s ease-in-out infinite;font-size:34px}
+@keyframes bob{50%{transform:translateY(-6px) rotate(6deg)}}
+.cd2 .b{padding:16px 14px;font-size:13px;line-height:1.7}
+.cd2 h3{font-size:24px;margin-bottom:4px}
+.dress{margin-top:10px;display:flex;gap:8px;justify-content:center;align-items:center;font-size:12px}
+.dress i{width:16px;height:16px;border-radius:50%;border:1px solid var(--gold);display:inline-block}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:6px}.dots i{width:7px;height:7px;border-radius:50%;background:var(--gold2)}.dots i.a{background:var(--wine)}
+.wine{background:linear-gradient(160deg,#7d2436,#4a1220);color:var(--gold2);border-radius:22px;padding:44px 22px;position:relative;overflow:hidden;box-shadow:0 14px 34px #4a122066}
+.wine h2{color:var(--gold)}
+.wine .sp{position:absolute;color:var(--gold);animation:tw 2.2s ease-in-out infinite;font-size:14px}
+@keyframes tw{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:1;transform:scale(1.2)}}
+.wine .fl{position:absolute;width:70px;animation:bl 3.5s ease-in-out infinite alternate;transform-origin:center}
+@keyframes bl{from{transform:scale(.4) rotate(-20deg);opacity:.5}to{transform:scale(1) rotate(10deg);opacity:1}}
+.map{display:block;border-radius:18px;border:1.5px solid var(--gold);background:var(--ivory);overflow:hidden;text-decoration:none;color:inherit}
+.map svg{display:block;width:100%}
+.rt{stroke-dasharray:300;stroke-dashoffset:300;animation:dr 3s ease-in-out infinite}
+@keyframes dr{0%{stroke-dashoffset:300}70%,100%{stroke-dashoffset:0}}
+.pin{animation:bob 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.pt{position:fixed;top:-20px;z-index:60;pointer-events:none;width:12px;height:16px;border-radius:70% 0 70% 0;background:#ecdcbc;animation:fall linear forwards}
+@keyframes fall{to{transform:translate3d(var(--x),105vh,0) rotate(540deg)}}
+.cf{position:absolute;width:7px;height:10px;pointer-events:none;animation:bst .9s ease-out forwards}
+@keyframes bst{to{transform:translate(var(--x),var(--y)) rotate(360deg);opacity:0}}
+footer{padding:40px 24px 70px;text-align:center;font-size:13px;line-height:1.8}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<radialGradient id="rg" cx="50%" cy="45%"><stop offset="0" stop-color="#fffdf6"/><stop offset=".55" stop-color="#f1e4cc"/><stop offset="1" stop-color="#cdb48c"/></radialGradient>
+<symbol id="rs" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="url(#rg)"/><circle cx="50" cy="50" r="34" fill="none" stroke="#c8ac78" stroke-width="2" opacity=".6"/><path d="M50 50m-6 0a6 6 0 1 1 12 0a10 10 0 1 1-20 0a14 14 0 1 1 28 0a18 18 0 1 1-36 0a22 22 0 1 1 44 0" fill="none" stroke="#b8975a" stroke-opacity=".7" stroke-width="2.5"/><ellipse cx="22" cy="80" rx="16" ry="7" fill="#8a9a74" transform="rotate(-30 22 80)"/><ellipse cx="80" cy="82" rx="16" ry="7" fill="#8a9a74" transform="rotate(30 80 82)"/></symbol><symbol id="ms" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 92V48a30 30 0 0 1 60 0v44z"/><path d="M28 92V49a22 22 0 0 1 44 0v43"/></g><g fill="currentColor" transform="translate(0,8)"><ellipse cx="50" cy="50" rx="4" ry="12"/><ellipse cx="50" cy="50" rx="4" ry="12" transform="rotate(45 50 50)"/><ellipse cx="50" cy="50" rx="4" ry="12" transform="rotate(90 50 50)"/><ellipse cx="50" cy="50" rx="4" ry="12" transform="rotate(135 50 50)"/><circle cx="50" cy="50" r="4" fill="#fff" fill-opacity=".5"/></g></symbol></defs></svg>
+
+<div id="loader"><div class="spin"></div></div>
+
+<div id="scene" aria-live="polite"><div class="wrap" id="wrap"><div class="book" id="book"><div class="pg"></div><div class="cover"><div class="med"><svg viewBox="0 0 100 100" width="84%" height="84%"><use href="#ms"/></svg></div></div></div></div><div id="hint">Tap the book to open</div></div>
+
+<div class="rose r1" data-p="-.12"><svg viewBox="0 0 100 100"><use href="#rs"/></svg></div>
+<div class="rose r2" data-p=".1"><svg viewBox="0 0 100 100" style="animation-delay:-2s"><use href="#rs"/></svg></div>
+<div class="rose r3" data-p=".14"><svg viewBox="0 0 100 100" style="animation-delay:-4s"><use href="#rs"/></svg></div>
+<div class="rose r4" data-p="-.1"><svg viewBox="0 0 100 100" style="animation-delay:-1s"><use href="#rs"/></svg></div>
+<div class="mari" id="mari"></div>
+
+<main id="site">
+<section class="first" data-a>
+<div class="ar" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+<div class="sm">Together with their families</div>
+<h1 class="nm" id="gn" aria-label="Jurez"></h1>
+<div class="par bi">Son of Mr. &amp; Mrs. [Father’s name] Ghanchi</div>
+<div class="amp bi">&amp;</div>
+<h1 class="nm" id="bn" aria-label="Aksha"></h1>
+<div class="par bi">Daughter of Mr. &amp; Mrs. [Father’s name] Patel</div>
+<p class="inv bi">request the pleasure of your company at the celebration of our wedding Daawat.</p>
+<div class="ch"></div>
+</section>
+
+<section data-a>
+<div class="ar bi" lang="ar" dir="rtl" style="font-size:26px">﴿ مَوَدَّةً وَرَحْمَةً ﴾</div>
+<p class="pf bi" style="font-style:italic;font-size:17px;line-height:1.7;margin-top:10px">“And among His signs is that He created for you spouses from among yourselves, that you may find tranquillity in them; and He placed between you affection and mercy.”</p>
+<div class="sm bi" style="margin-top:10px">Surah Ar-Rum · 30:21</div>
+</section>
+
+<section data-a>
+<p class="bi tx" style="font-style:italic">With hearts filled with gratitude to the Almighty, we celebrate the beautiful blessing of companionship, love and togetherness.</p>
+<div class="sm bi" style="margin-top:30px">With the blessings of our families</div><div class="rule"></div>
+<h2 class="bi">A New Chapter Begins</h2>
+<p class="bi tx">As we embark upon a beautiful new journey together, we feel truly blessed to share this special milestone with the people who have been a part of our lives.</p>
+<p class="bi tx">With the love and blessings of our parents and families, we would be delighted to have you join us as we celebrate the beginning of our married life.</p>
+<p class="bi tx">Your presence would add immense joy to our celebration, and it would mean so much to have you with us on this cherished occasion.</p>
+<div class="sc bi" style="font-size:42px;margin-top:20px">Jurez Ghanchi</div><div class="sm bi">and</div><div class="sc bi" style="font-size:42px">Aksha Patel</div>
+<p class="bi tx" style="margin-top:18px">Together with our families, we cordially invite you to grace the occasion of our wedding Daawat.</p>
+</section>
+
+<section data-a style="padding-top:12px">
+<div class="sm bi">Save the date</div><div class="rule"></div>
+<div style="position:relative"><div class="rod"></div>
+<div class="tas" id="tas"><b></b><u></u></div><div class="fing" id="fing">👆</div>
+<div class="scr" id="scr"><div class="in2"><div class="sm">Thursday</div><div class="dt pf" style="margin-top:10px">26 · 11 · 26</div><div class="sc" style="font-size:34px;margin:8px 0">Jurez &amp; Aksha</div><div class="sm">7:30 PM onwards</div><svg viewBox="0 0 100 100" width="46" height="46" style="color:var(--wine);margin-top:10px"><use href="#ms"/></svg></div></div></div>
+<p class="bi tx" style="margin-top:22px;font-style:italic">An evening of celebration, joy and togetherness.</p><div class="cd pf bi" id="cd">— days · — hrs · — min · — sec</div>
+<a class="btn f bi" style="margin-top:18px" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Jurez+%26+Aksha+Wedding+Daawat&dates=20261126T140000Z/20261126T170000Z&location=Kadri+Party+Plot">Add to calendar</a>
+</section>
+
+<section data-a>
+<h2 class="bi">Wedding Festivities</h2><div class="rule"></div>
+<div class="car" id="car">
+<div class="cd2"><div class="scn"><s>🎉</s><span>🎉</span></div><div class="b"><h3>Wedding Daawat</h3>Thursday, 26 November 2026<br>7:30 PM onwards<br>Kadri Party Plot<div class="dress"><i style="background:#6e1f2f"></i><i style="background:#c9a45c"></i>Festive traditional</div></div></div>
+<div class="cd2"><div class="scn"><s>🍽️</s><span>🍽️</span></div><div class="b"><h3>Vegetarian Dining</h3>Thursday, 26 November 2026<br>7:30 PM onwards<br>Royal palace<br><div class="dress"><i style="background:#a6aa91"></i><i style="background:#f6dcd9"></i>Festive traditional</div></div></div>
+<div class="cd2"><div class="scn"><s>💐</s><span>💐</span></div><div class="b"><h3>Blessings &amp; Greetings</h3>Thursday, 26 November 2026<br>With our families<br>Kadri Party Plot<div class="dress"><i style="background:#6e1f2f"></i><i style="background:#f6dcd9"></i>Festive traditional</div></div></div>
+</div><div class="dots" id="dots"><i></i><i></i><i></i></div>
+</section>
+
+<section data-a>
+<div class="wine bi">
+<span class="sp" style="top:14%;left:18%">❀</span><span class="sp" style="top:30%;right:16%;animation-delay:-.8s">❀</span><span class="sp" style="bottom:22%;left:30%;animation-delay:-1.4s">❀</span><span class="sp" style="top:8%;right:40%;animation-delay:-.4s">❀</span>
+<svg class="fl" style="top:-14px;left:-14px" viewBox="0 0 100 100"><use href="#rs"/></svg><svg class="fl" style="bottom:-14px;right:-14px;animation-delay:-1.7s" viewBox="0 0 100 100"><use href="#rs"/></svg>
+<div class="sm">With duas &amp; gratitude</div><h2 style="margin-top:12px">Grand Reception</h2>
+<p class="pf" style="font-size:18px;line-height:1.7">Thursday, 26 November 2026<br>7:30 PM onwards<br>Kadri Party Plot</p>
+<p style="font-size:12px;margin-top:14px;line-height:1.7;opacity:.85">An evening of joy, warm conversations and beautiful memories.</p></div>
+</section>
+
+<section data-a>
+<div class="sm bi">The celebration awaits</div><h2 class="bi" style="margin-top:6px">Location</h2><div class="rule"></div><p class="bi tx">We look forward to welcoming you for an evening filled with happiness, warm conversations and beautiful memories.</p>
+<a class="map bi" id="maplink" target="_blank" rel="noopener" href="#"><svg viewBox="0 0 320 200"><rect width="320" height="200" fill="#f3ead8"/><path d="M0 130 L320 90M60 0 L110 200M220 0 L190 200" stroke="#e1d3b3" stroke-width="14" fill="none"/><path class="rt" d="M30 170 C90 150 110 110 170 105 S250 80 270 50" stroke="#6e1f2f" stroke-width="3" stroke-dasharray="300" fill="none" stroke-linecap="round"/><circle cx="30" cy="170" r="6" fill="#c9a45c"/><g class="pin"><path d="M270 20a18 18 0 0 1 18 18c0 14-18 30-18 30S252 52 252 38a18 18 0 0 1 18-18z" fill="#6e1f2f"/><circle cx="270" cy="38" r="6" fill="#e8d3a2"/></g></svg>
+<div style="padding:14px"><h3 style="font-size:22px">Kadri Party Plot</h3><div style="font-size:12px;margin-top:4px">[Complete address]</div></div></a>
+<div style="margin-top:14px"><a class="btn f" id="dir" target="_blank" rel="noopener" href="#">Get directions</a><button class="btn" id="cp">Copy address</button></div>
+<a class="map bi" id="maplink2" target="_blank" rel="noopener" href="#" style="margin-top:36px"><svg viewBox="0 0 320 200"><rect width="320" height="200" fill="#f3ead8"/><path d="M0 70 L320 120M90 0 L60 200M240 0 L270 200" stroke="#e1d3b3" stroke-width="14" fill="none"/><path class="rt" d="M40 30 C100 50 140 100 190 110 S260 140 280 150" stroke="#6e1f2f" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="40" cy="30" r="6" fill="#c9a45c"/><g class="pin"><path d="M280 100a18 18 0 0 1 18 18c0 14-18 30-18 30S262 132 262 118a18 18 0 0 1 18-18z" fill="#6e1f2f"/><circle cx="280" cy="118" r="6" fill="#e8d3a2"/></g></svg>
+<div style="padding:14px"><h3 style="font-size:22px">Royal Palace, Shantipura</h3><div style="font-size:12px;margin-top:4px">[Complete address]</div></div></a>
+<div style="margin-top:14px"><a class="btn f" id="dir2" target="_blank" rel="noopener" href="#">Get directions</a><button class="btn" id="cp2">Copy address</button></div>
+</section>
+<section data-a>
+<div class="sm bi">A note for our vegetarian guests</div><div class="rule"></div>
+<h2 class="bi">Dining Arrangements</h2>
+<p class="bi tx">We have made special arrangements for our vegetarian guests to ensure that everyone can comfortably be a part of our celebration. Vegetarian dining is arranged at Kadri Party Plot.</p>
+<h2 class="bi" style="margin-top:34px">We’re Here to Help</h2>
+<p class="bi tx">We want to make your arrival and dining arrangements as convenient as possible. For assistance, please contact:</p>
+<p class="bi tx pf" style="font-size:16px">[Father’s / Uncle’s name]<br>[Phone number]</p>
+<p class="bi tx pf" style="font-size:16px">[Second contact’s name]<br>[Phone number]</p>
+<p class="bi tx pf" style="font-size:16px">[Third contact’s name]<br>[Phone number]</p>
+<p class="bi tx">We request you to kindly coordinate with our family members upon reaching the venue.</p>
+</section>
+<footer class="pf bi"><h2 style="font-size:24px">A Celebration Made More Beautiful With You</h2><p style="font-family:Montserrat;font-size:12px;opacity:.85;max-width:300px;margin:0 auto 18px">We would be honoured to have you share in our happiness.</p><div class="ar" lang="ar" dir="rtl" style="font-size:20px;margin-bottom:14px">بارك الله لهما وبارك عليهما وجمع بينهما في خير</div>With duas &amp; love,<br><span class="sc" style="font-size:38px">Jurez &amp; Aksha</span><br><span class="sm">26 November 2026</span></footer>
+</main>
+
+<script>
+const MAPS='https://www.google.com/maps/search/?api=1&query=Kadri+Party+Plot',DIR='https://www.google.com/maps/dir/?api=1&destination=Kadri+Party+Plot',ADDR='Kadri Party Plot, [Complete address]';
+const $=s=>document.querySelector(s);
+$('#maplink').href=MAPS;$('#dir').href=DIR;
+$('#maplink2').href='https://www.google.com/maps/search/?api=1&query=Royal+Palace+Shantipura';$('#dir2').href='https://www.google.com/maps/dir/?api=1&destination=Royal+Palace+Shantipura';
+$('#cp2').onclick=async e=>{const b=e.target;try{await navigator.clipboard.writeText('Royal Palace, Shantipura, [Complete address]');b.textContent='Copied ✓'}catch(x){b.textContent='Copy manually'}setTimeout(()=>b.textContent='Copy address',2000)};
+$('#cp').onclick=async e=>{const b=e.target;try{await navigator.clipboard.writeText(ADDR);b.textContent='Copied ✓'}catch(x){b.textContent='Copy manually'}setTimeout(()=>b.textContent='Copy address',2000)};
+/* marigolds */
+const m=$('#mari');for(let i=0;i<9;i++){const e=document.createElement('i');e.style.left=(i*12.5)+'%';e.style.setProperty('--h',(40+(i%3)*30)+'px');m.appendChild(e)}
+/* loader */
+const t=new Promise(r=>setTimeout(r,6000));
+Promise.race([Promise.all([document.fonts.ready,new Promise(r=>document.readyState=='complete'?r():addEventListener('load',r))]),t]).then(()=>{$('#loader').style.opacity=0;setTimeout(()=>$('#loader').remove(),600);$('#hint').classList.add('show')});
+function type(el,txt,d){el.textContent='';[...txt].forEach((c,i)=>{const s=document.createElement('span');s.className='l';s.textContent=c;el.appendChild(s);setTimeout(()=>s.classList.add('in'),d+i*130)})}
+function petals(){for(let i=0;i<14;i++){const p=document.createElement('div');p.className='pt';p.style.left=Math.random()*100+'vw';p.style.setProperty('--x',(Math.random()*120-60)+'px');p.style.animationDuration=(5+Math.random()*4)+'s';p.style.animationDelay=Math.random()*2+'s';document.body.appendChild(p);setTimeout(()=>p.remove(),11000)}}
+let opened=false;
+$('#scene').onclick=()=>{if(opened||!$('#hint').classList.contains('show'))return;opened=true;$('#hint').classList.remove('show');$('#book').classList.add('open');
+setTimeout(()=>$('#scene').classList.add('zoom'),1100);
+setTimeout(()=>{$('#site').classList.add('on');document.body.style.overflow='auto';$('#scene').style.opacity=0;petals();type($('#gn'),'Jurez',300);type($('#bn'),'Aksha',1300);setTimeout(()=>{started=true;setAuto(true)},8000);setTimeout(()=>$('#scene').remove(),900)},2400)};
+/* reveal + pause offscreen */
+const io=new IntersectionObserver(es=>es.forEach(e=>{e.target.classList.toggle('paused',!e.isIntersecting);if(e.isIntersecting)e.target.querySelectorAll('.bi').forEach((x,i)=>setTimeout(()=>x.classList.add('in'),i*180))}),{threshold:.15});
+document.querySelectorAll('[data-a]').forEach(s=>io.observe(s));
+/* parallax + swing */
+const roses=[...document.querySelectorAll('.rose')],ms=[...m.children];let ly=0,tk=false;
+addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(()=>{const y=scrollY,v=Math.max(-14,Math.min(14,(y-ly)*.6));ly=y;roses.forEach(r=>r.style.transform=`translate3d(0,${y*r.dataset.p}px,0)`);ms.forEach((e,i)=>e.style.setProperty('--sw',(v*(i%2?1:-1))+'deg'));tk=false;clearTimeout(window._s);window._s=setTimeout(()=>ms.forEach(e=>e.style.setProperty('--sw','0deg')),180)})}},{passive:true});
+/* scroll pull */
+let pulled=false;function pull(){if(pulled)return;pulled=true;$('#scr').classList.add('open');$('#fing').remove();$('#tas').style.transition='transform .6s';$('#tas').style.transform='translateY(0)';
+setTimeout(()=>{petals();const r=$('#scr').getBoundingClientRect();for(let i=0;i<24;i++){const c=document.createElement('div');c.className='cf';c.style.cssText=`left:50%;top:60px;background:${['#c9a45c','#6e1f2f','#f3a2b0'][i%3]};--x:${Math.random()*300-150}px;--y:${Math.random()*260}px`;$('#scr').parentElement.appendChild(c);setTimeout(()=>c.remove(),1000)}},900)}
+const tas=$('#tas');let sy=null;tas.onpointerdown=e=>{sy=e.clientY;tas.setPointerCapture(e.pointerId)};tas.onpointermove=e=>{if(sy==null)return;const d=Math.max(0,Math.min(70,e.clientY-sy));tas.style.transform=`translateY(${d}px)`;if(d>45){sy=null;pull()}};tas.onpointerup=()=>{if(sy!=null&&!pulled)pull();sy=null};
+/* countdown */
+const T=new Date('2026-11-26T19:30:00+05:30').getTime(),cd=$('#cd');
+setInterval(()=>{let s=Math.max(0,Math.floor((T-Date.now())/1000));const d=Math.floor(s/86400),h=Math.floor(s%86400/3600),mi=Math.floor(s%3600/60);cd.textContent=`${d} days · ${h} hrs · ${mi} min · ${s%60} sec`},1000);
+/* carousel */
+const cs=[...document.querySelectorAll('.cd2')],dots=[...$('#dots').children];let ix=0;
+function rend(){cs.forEach((c,i)=>{let d=((i-ix+4)%3)-1;c.style.transform=`translateX(${d*58}%) rotateY(${-d*32}deg) scale(${d?.82:1})`;c.style.opacity=d?.6:1;c.style.filter=d?'blur(2px)':'none';c.style.zIndex=d?1:5});dots.forEach((x,i)=>x.className=i==ix?'a':'')}
+rend();let sx=null,cin=false;new IntersectionObserver(e=>cin=e[0].isIntersecting).observe($('#car'));setInterval(()=>{if(cin&&!document.hidden){ix=(ix+1)%3;rend()}},4200);const car=$('#car');car.onpointerdown=e=>sx=e.clientX;car.onpointerup=e=>{if(sx==null)return;const d=e.clientX-sx;if(Math.abs(d)>40){ix=(ix+(d<0?1:-1)+3)%3;rend()}sx=null};
+/* auto scroll */
+let started=false,auto=false,hold=false,lt=0,acc=0,rt;
+function setAuto(v){auto=v}
+['touchstart','touchmove','touchend','wheel','keydown','pointerdown'].forEach(n=>addEventListener(n,()=>{if(!started)return;setAuto(false);clearTimeout(rt);rt=setTimeout(()=>{if(innerHeight+scrollY<document.documentElement.scrollHeight-2)setAuto(true)},4000)},{passive:true}));
+function loop(t){const dt=Math.min(60,t-lt);lt=t;
+if(auto&&!hold){acc+=dt*.04;const p=Math.floor(acc);if(p){acc-=p;scrollTo(0,scrollY+p)}
+if(!pulled&&$('#tas').getBoundingClientRect().top<innerHeight*.55){hold=true;setTimeout(()=>{pull();setTimeout(()=>hold=false,3200)},1000)}
+if(innerHeight+scrollY>=document.documentElement.scrollHeight-2)setAuto(false)}
+requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+</script></body></html>
